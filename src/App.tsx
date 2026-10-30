@@ -1,7 +1,8 @@
-import { useState, type CSSProperties } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { Chess, type Square } from 'chess.js'
 import { Chessboard, type PieceDropHandlerArgs, type SquareHandlerArgs } from 'react-chessboard'
 import { analyse } from './analysis.ts'
+import { fetchExplorer, suggest, type Explorer, type Suggestion } from './explorer.ts'
 import { explore, figurine, type Color, type Sheet } from './repertoire.ts'
 
 const LIGHT = '#ebecd0'
@@ -12,9 +13,69 @@ const targetStyle: CSSProperties = {
   background: 'radial-gradient(circle, rgba(0, 0, 0, 0.28) 24%, transparent 26%)',
 }
 
+type Lookup = { fen: string; explorer?: Explorer; error?: string }
+
 function moveNumber(ply: number) {
   const number = Math.floor(ply / 2) + 1
   return ply % 2 === 0 ? `${number}.` : `${number}...`
+}
+
+// Le répertoire ne fait aucun appel : seule une position sans suite interroge Lichess.
+function useExplorer(fen: string, enabled: boolean) {
+  const [lookup, setLookup] = useState<Lookup | null>(null)
+
+  useEffect(() => {
+    if (!enabled) return
+    const controller = new AbortController()
+    fetchExplorer(fen, controller.signal)
+      .then((explorer) => setLookup({ fen, explorer }))
+      .catch((error: Error) => {
+        if (controller.signal.aborted) return
+        const offline = error instanceof TypeError
+        setLookup({ fen, error: offline ? 'Pas de réseau : seul ton répertoire reste disponible.' : error.message })
+      })
+    return () => controller.abort()
+  }, [fen, enabled])
+
+  return lookup?.fen === fen ? lookup : null
+}
+
+type ExplorerPanelProps = {
+  lookup: Lookup | null
+  suggestions: Suggestion[]
+  myTurn: boolean
+  onPlay: (san: string) => void
+}
+
+function ExplorerPanel({ lookup, suggestions, myTurn, onPlay }: ExplorerPanelProps) {
+  return (
+    <div className="explorer">
+      {!lookup && <p className="hint">Recherche sur Lichess…</p>}
+      {lookup?.error && <p>{lookup.error}</p>}
+      {lookup?.explorer && suggestions.length === 0 && <p>Aucune partie à ce niveau pour cette position.</p>}
+
+      {suggestions.length > 0 && (
+        <>
+          <h2>{myTurn ? 'Meilleurs scores à ton niveau' : 'Coups adverses les plus joués'}</h2>
+          {lookup?.explorer?.opening && <p className="hint">{lookup.explorer.opening}</p>}
+          <ul className="suggestions">
+            {suggestions.map(({ san, games, score }, rank) => (
+              <li key={san}>
+                <button type="button" className={myTurn && rank === 0 ? 'primary' : undefined} onClick={() => onPlay(san)}>
+                  {figurine(san)}
+                </button>
+                <span className="hint">
+                  {myTurn && `${Math.round(score * 100)} % · `}
+                  {games.toLocaleString('fr-FR')} parties
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="hint">Statistiques de parties Lichess 1400-1999, pas une analyse moteur.</p>
+        </>
+      )}
+    </div>
+  )
 }
 
 function BulletList({ title, items }: { title: string; items: string[] }) {
@@ -31,13 +92,16 @@ function BulletList({ title, items }: { title: string; items: string[] }) {
   )
 }
 
-function SheetCard({ sheet, forts, faibles }: { sheet: Sheet; forts: string[]; faibles: string[] }) {
+type SheetCardProps = { sheet: Sheet; outdated: boolean; forts: string[]; faibles: string[] }
+
+function SheetCard({ sheet, outdated, forts, faibles }: SheetCardProps) {
   return (
     <article className="sheet">
       <header>
         <h2>{sheet.name}</h2>
         <span className="eco">{sheet.eco}</span>
       </header>
+      {outdated && <p className="hint">Dernière fiche connue : elle peut ne plus décrire cette position.</p>}
       <p>{sheet.idea}</p>
       <BulletList title="Plan après l’ouverture" items={sheet.plan} />
       <BulletList title="Tactiques à connaître" items={sheet.tactics} />
@@ -59,8 +123,14 @@ export default function App() {
   const chess = new Chess(view.fen)
   const { forts, faibles } = analyse(view.fen, color)
   const book = view.entry?.moves ?? []
+  const outOfBook = book.length === 0
+  const lookup = useExplorer(view.fen, outOfBook)
+  const legal = chess.moves()
+  const lichessMoves = lookup?.explorer?.moves.filter(({ san }) => legal.includes(san)) ?? []
+  const suggestions = suggest(lichessMoves, color, view.myTurn)
   const recommended = view.myTurn ? book[0] : undefined
-  const arrow = recommended && new Chess(view.fen).move(recommended.san)
+  const bestSan = recommended?.san ?? (view.myTurn ? suggestions[0]?.san : undefined)
+  const arrow = bestSan ? new Chess(view.fen).move(bestSan) : undefined
   const targets = selected ? chess.moves({ square: selected, verbose: true }) : []
 
   const squareStyles: Record<string, CSSProperties> = {}
@@ -142,7 +212,6 @@ export default function App() {
           {!view.entry && (
             <>
               <p className="badge">Hors répertoire</p>
-              <p>Aucun coup conseillé ici : l’analyse de la position reste disponible.</p>
               <button type="button" onClick={() => changeMoves(moves.slice(0, view.lastBookPly))}>
                 Revenir à la dernière position connue
               </button>
@@ -179,6 +248,15 @@ export default function App() {
               <p>L’ouverture est terminée : applique le plan ci-dessous.</p>
             </>
           )}
+
+          {outOfBook && (
+            <ExplorerPanel
+              lookup={lookup}
+              suggestions={suggestions}
+              myTurn={view.myTurn}
+              onPlay={(san) => changeMoves([...moves, san])}
+            />
+          )}
         </section>
 
         {moves.length > 0 && (
@@ -192,7 +270,7 @@ export default function App() {
           </ol>
         )}
 
-        <SheetCard sheet={view.sheet} forts={forts} faibles={faibles} />
+        <SheetCard sheet={view.sheet} outdated={!view.entry} forts={forts} faibles={faibles} />
       </div>
     </main>
   )

@@ -140,6 +140,30 @@ button:focus-visible {
   font-size: 1.1rem;
 }
 
+.explorer {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.suggestions {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.suggestions li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.suggestions button {
+  min-width: 5rem;
+  font-size: 1.1rem;
+}
+
 .badge {
   display: inline-block;
   margin: 0;
