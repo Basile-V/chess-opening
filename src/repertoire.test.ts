@@ -53,6 +53,14 @@ test('une transposition rejoint le Dragon Accéléré', () => {
   assert.equal(viaD4.sheet.name, direct.sheet.name)
 })
 
+test('la dame sortie en d4 est reconnue par les deux ordres de coups', () => {
+  const viaNf3 = explore('Nf3 c5 d4 cxd4 Qxd4'.split(' '), 'black')
+  const viaD4 = explore('d4 c5 Nf3 cxd4 Qxd4'.split(' '), 'black')
+  assert.equal(viaNf3.entry?.moves[0]?.san, 'Nc6')
+  assert.equal(viaD4.entry, viaNf3.entry)
+  assert.equal(viaD4.sheet, sheets['anti-d4'])
+})
+
 test('hors répertoire, la dernière position connue et sa fiche restent disponibles', () => {
   const known = 'c4 e6 Nc3 d5 d4 Nf6 cxd5 exd5 Bg5'.split(' ')
   const out = explore([...known, 'a5', 'h3'], 'white')
