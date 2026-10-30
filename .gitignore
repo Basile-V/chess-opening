@@ -5,3 +5,5 @@ dev-dist/
 .DS_Store
 *.log
 .evals-cache.json
+.env*
+.dev.vars

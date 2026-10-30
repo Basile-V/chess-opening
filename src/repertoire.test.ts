@@ -38,11 +38,21 @@ test('une seule recommandation par position à mon tour', () => {
   }
 })
 
-test('le répertoire démarre sur c4 avec les Blancs et c5 avec les Noirs', () => {
-  assert.equal(explore([], 'white').entry?.moves[0]?.san, 'c4')
+test('le répertoire démarre sur d4 puis c4 avec les Blancs et c5 avec les Noirs', () => {
+  assert.equal(explore([], 'white').entry?.moves[0]?.san, 'd4')
+  for (const reply of ['d5', 'Nf6', 'f5', 'e6', 'g6']) {
+    assert.equal(explore(['d4', reply], 'white').entry?.moves[0]?.san, 'c4', reply)
+  }
   for (const first of ['e4', 'd4', 'c4', 'Nf3']) {
     assert.equal(explore([first], 'black').entry?.moves[0]?.san, 'c5', first)
   }
+})
+
+test('♞f3 ramène au Gambit Dame par transposition', () => {
+  const direct = explore('d4 d5 c4 e6 Nc3 c6 Nf3 Nf6 e3'.split(' '), 'white')
+  const viaNf3 = explore('d4 Nf6 c4 e6 Nf3 d5 Nc3 c6 e3'.split(' '), 'white')
+  assert.equal(viaNf3.entry, direct.entry)
+  assert.equal(viaNf3.sheet, sheets['semi-slave'])
 })
 
 test('une transposition rejoint le Dragon Accéléré', () => {
@@ -62,7 +72,7 @@ test('la dame sortie en d4 est reconnue par les deux ordres de coups', () => {
 })
 
 test('hors répertoire, la dernière position connue et sa fiche restent disponibles', () => {
-  const known = 'c4 e6 Nc3 d5 d4 Nf6 cxd5 exd5 Bg5'.split(' ')
+  const known = 'd4 d5 c4 e6 Nc3 Nf6 cxd5 exd5 Bg5'.split(' ')
   const out = explore([...known, 'a5', 'h3'], 'white')
   assert.equal(out.entry, undefined)
   assert.equal(out.lastBookPly, known.length)
@@ -70,13 +80,13 @@ test('hors répertoire, la dernière position connue et sa fiche restent disponi
 })
 
 test('la famille s’affiche quand plusieurs fiches restent possibles', () => {
-  assert.equal(explore('c4 e6 Nc3 d5 d4'.split(' '), 'white').sheet, sheets['gambit-dame'])
-  assert.equal(explore('c4 c6 Nc3 d5 d4'.split(' '), 'white').sheet, sheets['gambit-dame'])
+  assert.equal(explore('d4 d5 c4'.split(' '), 'white').sheet, sheets['gambit-dame'])
+  assert.equal(explore('d4 Nf6 c4 g6'.split(' '), 'white').sheet, sheets.indiennes)
   assert.equal(explore(['e4'], 'black').sheet, sheets.sicilienne)
 })
 
 test('le système reste affiché tant que le coup adverse ne tranche rien', () => {
-  assert.equal(explore(['c4'], 'white').sheet, sheets['systeme-blancs'])
+  assert.equal(explore(['d4'], 'white').sheet, sheets['systeme-blancs'])
 })
 
 test('la position de départ affiche la fiche du système', () => {

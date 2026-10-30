@@ -1,23 +1,23 @@
 {
   "systeme-blancs": {
     "name": "Ton système avec les Blancs",
-    "eco": "A10-A39",
-    "idea": "Tu commences par c4. Si les Noirs jouent ou préparent ...d5, tu joues d4 et tu rejoins le Gambit Dame. Sinon, tu construis l'Anglaise avec ♞c3, g3 et ♝g2.",
+    "eco": "A40-E99",
+    "idea": "Tu joues d4, puis c4 presque quoi que fassent les Noirs. Contre 1...d5, c'est le Gambit Dame. Contre 1...♞f6 2.c4 e6, ♞f3 évite la Nimzo-Indienne et ramène souvent au Gambit Dame.",
     "plan": [
       "Saisis le coup adverse pour voir ta suite.",
-      "Contre ...d5 préparé : d4 et Gambit Dame.",
-      "Contre ...e5, ...c5 ou ...g6 : g3, ♝g2, puis expansion à l'aile dame."
+      "Contre ...d5 : c4, puis ♞c3 et échange en d5 contre ...e6.",
+      "Contre ...♞f6 : c4, puis ♞c3 ou ♞f3 selon la réponse."
     ],
     "tactics": [
-      "Le fou g2 sur la grande diagonale crée souvent des tactiques sur b7 et c6."
+      "Tes pions c4 et d4 contrôlent le centre : les ruptures ...c5 et ...e5 sont à surveiller."
     ],
     "traps": [],
     "strengths": [
-      "Tu choisis la structure selon la réponse adverse.",
-      "Peu de théorie forcée au début."
+      "Un seul réflexe au début : d4 et c4.",
+      "Espace et centre dans presque toutes les lignes."
     ],
     "weaknesses": [
-      "Il faut connaître les deux familles de plans."
+      "Il faut connaître plusieurs familles contre ...♞f6."
     ]
   },
   "systeme-noirs": {
@@ -87,104 +87,6 @@
     ],
     "weaknesses": [
       "Les Blancs ont un peu plus d'espace et de développement au début."
-    ]
-  },
-  "anglaise-inversee": {
-    "name": "Anglaise inversée",
-    "eco": "A20-A29",
-    "idea": "Tu joues une Sicilienne avec les couleurs inversées et un temps de plus. Ton fou g2 et ta tour sur la colonne c pèsent sur l'aile dame noire.",
-    "plan": [
-      "Roque, puis d3 pour tenir e4.",
-      "a3 et b4 pour gagner de l'espace à l'aile dame.",
-      "Fou en b2 ou e3, tour en c1 sur la colonne ouverte."
-    ],
-    "tactics": [
-      "Le fou g2 vise c6 et b7 : un cavalier c6 déplacé laisse souvent b7 en prise.",
-      "La poussée b4-b5 chasse le cavalier c6 et affaiblit e5."
-    ],
-    "traps": [
-      "Ne laisse pas un pion noir s'installer en e4 sans l'attaquer : joue ♞g5 puis f3 ou d3."
-    ],
-    "strengths": [
-      "Aile dame active et colonne c.",
-      "Fou g2 très puissant si le centre s'ouvre."
-    ],
-    "weaknesses": [
-      "Peu d'espace au centre au début.",
-      "Les Noirs ont souvent un pion e5 solide et peuvent attaquer à l'aile roi."
-    ]
-  },
-  "anglaise-fermee": {
-    "name": "Anglaise fermée",
-    "eco": "A25-A26",
-    "idea": "Le centre reste bloqué et chaque camp joue sur son aile. La tienne, c'est l'aile dame, avec la poussée b4.",
-    "plan": [
-      "♜b1, a3, puis b4 et b5.",
-      "Échange les pions a pour ouvrir la colonne a.",
-      "Garde le roi en g1 à l'abri de ...f5."
-    ],
-    "tactics": [
-      "b5 chasse le cavalier c6 et donne la case d5 à ton cavalier.",
-      "Sur ...f5, surveille la diagonale du fou g2."
-    ],
-    "traps": [
-      "Si les Noirs poussent ...f5 et ...f4, ne reste pas passif : ton jeu à l'aile dame doit arriver en premier."
-    ],
-    "strengths": [
-      "Plan simple et répétable.",
-      "La case d5 pour ton cavalier."
-    ],
-    "weaknesses": [
-      "Les Noirs ont de l'espace à l'aile roi.",
-      "Une ouverture du centre trop tard peut laisser ton roi seul."
-    ]
-  },
-  "symetrique-blancs": {
-    "name": "Anglaise symétrique",
-    "eco": "A30-A39",
-    "idea": "Les deux camps font la même chose : celui qui agit le premier prend l'avantage. Tu as le trait, donc les ruptures d4 ou b4 arrivent chez toi d'abord.",
-    "plan": [
-      "Termine g3, ♝g2, ♞f3, roque.",
-      "Si le centre est libre : d4 pour ouvrir le jeu.",
-      "Si les Noirs jouent ...e5 : a3, ♜b1 et b4."
-    ],
-    "tactics": [
-      "Après d4, le fou g2 pèse sur la grande diagonale jusqu'à b7.",
-      "♞d5 est souvent fort si le cavalier noir ne peut pas le chasser."
-    ],
-    "traps": [],
-    "strengths": [
-      "Le trait dans une position égale.",
-      "Fou g2 actif."
-    ],
-    "weaknesses": [
-      "Peu de déséquilibres : il faut être patient.",
-      "La dame centralisée en d4 peut être chassée."
-    ]
-  },
-  "herisson": {
-    "name": "Hérisson",
-    "eco": "A30",
-    "idea": "Tu as plus d'espace, mais les pions noirs sur la 6e rangée restent très souples. Il faut garder ce contrôle sans te laisser surprendre par ...d5 ou ...b5.",
-    "plan": [
-      "♜d1, b3, ♝b2, e4 pour bloquer ...d5.",
-      "Double les tours sur la colonne d.",
-      "Garde tes pièces prêtes à répondre aux ruptures."
-    ],
-    "tactics": [
-      "La rupture ...d5 ou ...b5 libère soudain le jeu noir : calcule-la à chaque coup.",
-      "Le pion d6 est la cible naturelle."
-    ],
-    "traps": [
-      "Une dame en d4 peut être gênée par ...♞c6 : prévois sa retraite."
-    ],
-    "strengths": [
-      "Plus d'espace.",
-      "Pression sur d6."
-    ],
-    "weaknesses": [
-      "La position noire est plus dynamique qu'elle n'y paraît.",
-      "Trop de pièces serrées peuvent se gêner."
     ]
   },
   "qgd": {
@@ -369,89 +271,14 @@
     ],
     "family": "gambit-dame"
   },
-  "anglaise-nimzo": {
-    "name": "Anglaise, schéma Nimzo et Ouest-Indienne",
-    "eco": "A17, E15",
-    "idea": "Les Noirs contrôlent e4 avec leurs pièces au lieu de jouer ...d5. Tu restes souple et tu récupères la paire de fous.",
-    "plan": [
-      "♛c2, a3 et ♛xc3 pour garder ta structure.",
-      "g3 et ♝g2 pour disputer la grande diagonale.",
-      "b4 ou d4 pour gagner de l'espace."
-    ],
-    "tactics": [
-      "La paire de fous gagne en force dès que le jeu s'ouvre.",
-      "♞e5 échange le fou b7 quand le fou g2 est en place."
-    ],
-    "traps": [
-      "Le cavalier e4 noir est gênant : chasse-le ou échange-le vite."
-    ],
-    "strengths": [
-      "Paire de fous.",
-      "Structure de pions saine."
-    ],
-    "weaknesses": [
-      "Les Noirs ont un bon contrôle de e4.",
-      "Un retard de développement est possible."
-    ]
-  },
-  "anglaise-indienne": {
-    "name": "Anglaise contre le fianchetto noir",
-    "eco": "A15-A16",
-    "idea": "Les deux fous regardent la grande diagonale. Ton plan reste l'expansion à l'aile dame, sans ouvrir le centre.",
-    "plan": [
-      "Roque et d3.",
-      "♜b1, a3 et b4.",
-      "Échange le fou g7 si tu peux, ou garde ton fou g2."
-    ],
-    "tactics": [
-      "Le fou g2 vise b7 : surveille les captures en c6.",
-      "b4-b5 chasse le cavalier c6 et libère d5."
-    ],
-    "traps": [
-      "Ne joue pas d4 trop vite : ...exd4 ouvre le fou g7 vers b2."
-    ],
-    "strengths": [
-      "Plan identique à l'Anglaise fermée.",
-      "Jeu à l'aile dame."
-    ],
-    "weaknesses": [
-      "Peu d'espace central.",
-      "Les Noirs peuvent attaquer avec ...f5."
-    ]
-  },
-  "scandinave-inverse": {
-    "name": "Anglaise, réponse 1...d5",
-    "eco": "A10",
-    "idea": "Après 1...d5, le Gambit Dame n'existe plus, mais la dame noire sort trop tôt et tu gagnes un temps.",
-    "plan": [
-      "♞c3 avec gain de temps.",
-      "d4, ♞f3 puis e4 pour le grand centre.",
-      "Développe vite et roque."
-    ],
-    "tactics": [
-      "Une dame en a5 reste exposée aux découvertes de ton fou d2.",
-      "Après e4-e5, le cavalier f6 doit bouger et ton attaque arrive."
-    ],
-    "traps": [
-      "Si la dame va en a5, gare à ...♝f5 qui vise c2."
-    ],
-    "strengths": [
-      "Grosse avance de développement.",
-      "Centre de pions."
-    ],
-    "weaknesses": [
-      "Les pions centraux doivent être soutenus.",
-      "Les Noirs n'ont pas de faiblesse structurelle."
-    ]
-  },
   "hollandaise": {
-    "name": "Anglaise contre la Hollandaise",
-    "eco": "A10, A85-A87",
-    "idea": "Les Noirs contrôlent e4 avec le pion f5, mais affaiblissent e6 et leur roi. Tu joues d4 après avoir mis ton fou en g2.",
+    "name": "Contre la Hollandaise",
+    "eco": "A80-A99",
+    "idea": "Les Noirs contrôlent e4 avec le pion f5, mais affaiblissent e6 et leur roi. Tu mets ton fou en g2 avant toute chose.",
     "plan": [
-      "Fianchetto et roque.",
-      "d4 puis d5 pour gagner de l'espace.",
-      "b4 et ♞d4 selon la structure."
+      "Fianchetto g3, ♝g2, puis ♞f3 et roque.",
+      "♞c3 et b4 ou d5 pour gagner de l'espace.",
+      "Contre le Stonewall (...d5) : b3 et ♝b2 ou ♝a3, puis échange des fous de cases noires."
     ],
     "tactics": [
       "La case e6 affaiblie est une cible pour ♞g5 ou ♞d4.",
@@ -782,6 +609,183 @@
     "weaknesses": [
       "Les Blancs ont des ruptures tardives.",
       "Ton fou g7 peut être bouché si tu joues ...e5."
+    ]
+  },
+  "gambit-dame-rares": {
+    "name": "Gambit Dame : réponses rares",
+    "eco": "D02-D09",
+    "family": "gambit-dame",
+    "idea": "Les Noirs quittent les lignes classiques avec un gambit ou une sortie de pièce précoce. Ces idées sont souvent trop optimistes : prends ce qu'on t'offre, développe et ne cherche pas à tout garder.",
+    "plan": [
+      "Accepte le pion si la ligne l'indique.",
+      "Développe ♞f3, g3 ou e3, puis roque.",
+      "Rends le pion si cela te donne le centre."
+    ],
+    "tactics": [
+      "Une dame noire sortie tôt te donne des temps avec ♞c3.",
+      "♛b3 ou ♛a4+ visent b7 dès que le fou c8 a bougé."
+    ],
+    "traps": [
+      "Dans l'Albin (...e5, ...d4), ne joue pas e3 : le piège de Lasker te coûte très cher."
+    ],
+    "strengths": [
+      "Avantage objectif et centre solide.",
+      "Moins de théorie pour les Noirs à exploiter."
+    ],
+    "weaknesses": [
+      "Les Noirs jouent ces lignes par cœur : reste prudent les premiers coups."
+    ]
+  },
+  "indiennes": {
+    "name": "Défenses indiennes",
+    "eco": "A45-E99",
+    "idea": "Les Noirs ne bloquent pas le centre avec ...d5. Ils contrôlent les cases centrales à distance, puis les attaquent. Tu prends l'espace sans te précipiter.",
+    "plan": [
+      "c4, puis ♞c3 ou ♞f3 selon leur schéma.",
+      "e4 quand les Noirs le permettent.",
+      "Roque, puis expansion à l'aile dame."
+    ],
+    "tactics": [
+      "La poussée d5 chasse un cavalier et ferme la grande diagonale.",
+      "Surveille les ruptures ...c5 et ...e5."
+    ],
+    "traps": [
+      "Ne pousse pas tous tes pions : chaque avance laisse des cases derrière elle."
+    ],
+    "strengths": [
+      "Espace.",
+      "Choix du moment pour ouvrir le jeu."
+    ],
+    "weaknesses": [
+      "Ton centre devient une cible si ton développement traîne."
+    ]
+  },
+  "ouest-indienne": {
+    "name": "Ouest-Indienne et Bogo-Indienne",
+    "eco": "E11, E12-E19",
+    "family": "indiennes",
+    "idea": "Ton coup ♞f3 évite la Nimzo-Indienne. Les Noirs luttent pour e4 avec leurs fous : tu réponds par le fianchetto ou l'échange.",
+    "plan": [
+      "g3 et ♝g2 pour disputer la grande diagonale.",
+      "Roque et ♞c3.",
+      "♛c2 puis e4 pour prendre le centre."
+    ],
+    "tactics": [
+      "♞e5 ou ♞d2 échangent les pièces qui contrôlent e4.",
+      "d5 enferme le fou b7."
+    ],
+    "traps": [
+      "Après ...♝b4+, ne réponds pas ♞bd2 par réflexe : ♝d2 échange le fou simplement."
+    ],
+    "strengths": [
+      "Structure saine et jeu sans risque.",
+      "Pression durable sur la grande diagonale."
+    ],
+    "weaknesses": [
+      "Les Noirs sont solides : l'avantage reste modeste."
+    ]
+  },
+  "est-indienne": {
+    "name": "Est-Indienne",
+    "eco": "E60-E99",
+    "family": "indiennes",
+    "idea": "Tu prends tout le centre. Les Noirs bloquent avec ...e5 puis attaquent à l'aile roi avec ...f5. Tu joues plus vite à l'aile dame.",
+    "plan": [
+      "e4, ♞f3, ♝e2, roque.",
+      "d5 pour fermer le centre.",
+      "♞e1-d3, puis c5 et b4."
+    ],
+    "tactics": [
+      "c5 ouvre la colonne c et attaque d6.",
+      "Après ...exd4 ♞xd4, le pion d6 devient faible : f3 et ♝e3 tiennent ton centre."
+    ],
+    "traps": [
+      "Ne laisse pas ...f5-f4 et ...g5 arriver sans ton jeu à l'aile dame : c'est une course."
+    ],
+    "strengths": [
+      "Espace énorme.",
+      "Attaque naturelle à l'aile dame."
+    ],
+    "weaknesses": [
+      "Attaque noire dangereuse contre ton roi.",
+      "Le fou c1 peut manquer de cases."
+    ]
+  },
+  "grunfeld": {
+    "name": "Défense Grünfeld",
+    "eco": "D70-D99",
+    "family": "indiennes",
+    "idea": "Les Noirs t'offrent le centre pour l'attaquer ensuite avec ...c5 et le fou g7. Tu acceptes et tu le défends.",
+    "plan": [
+      "cxd5, e4 et bxc3 pour le grand centre.",
+      "♞f3, ♝e3, ♜c1, ♛d2.",
+      "♝e2 et roque, puis d5 quand c'est possible."
+    ],
+    "tactics": [
+      "Le fou g7 vise d4 et c3 : compte toujours les défenseurs.",
+      "♜c1 protège c3 contre ...cxd4 et ...♛a5."
+    ],
+    "traps": [
+      "Ne roque pas avant d'avoir protégé d4 et c3."
+    ],
+    "strengths": [
+      "Centre massif.",
+      "Espace et cases d'attaque."
+    ],
+    "weaknesses": [
+      "Pression constante sur d4.",
+      "Pion a2 parfois en prise après les échanges."
+    ]
+  },
+  "benoni-blancs": {
+    "name": "Benoni et Benko",
+    "eco": "A56-A79",
+    "family": "indiennes",
+    "idea": "Les Noirs acceptent une structure déséquilibrée pour le jeu de pièces. Tu as le centre : ton objectif est la poussée e5, ou ♝f4 sur d6.",
+    "plan": [
+      "♞c3, e4, ♞f3, ♝e2, roque.",
+      "♞d2-c4 pour attaquer d6.",
+      "e5 dès que c'est possible."
+    ],
+    "tactics": [
+      "Le pion d6 est la cible naturelle.",
+      "e5 ouvre les lignes vers le roi noir."
+    ],
+    "traps": [
+      "Dans le Benko, garde le pion : les Noirs n'ont que des colonnes ouvertes en échange."
+    ],
+    "strengths": [
+      "Espace central.",
+      "Pion d6 faible."
+    ],
+    "weaknesses": [
+      "Le fou g7 est très fort si le centre s'ouvre.",
+      "Les Noirs ont ...b5 et ...a6."
+    ]
+  },
+  "budapest": {
+    "name": "Gambit de Budapest",
+    "eco": "A51-A52",
+    "family": "indiennes",
+    "idea": "Les Noirs sacrifient e5 pour un jeu de pièces rapide. Tu prends le pion, puis tu tiens bien ton développement.",
+    "plan": [
+      "dxe5, ♝f4, ♞f3.",
+      "♞bd2 et e3.",
+      "♝e2, roque, puis ♛c2."
+    ],
+    "tactics": [
+      "Les Noirs regagnent souvent le pion e5 : c'est normal.",
+      "Échange les cavaliers pour limiter leur activité."
+    ],
+    "traps": [
+      "Après ...♛e7 et ...♞gxe5, ne prends pas en b4 : ...♞d3 est mat."
+    ],
+    "strengths": [
+      "Paire de fous.",
+      "Meilleure structure."
+    ],
+    "weaknesses": [
+      "Développement à surveiller les premiers coups."
     ]
   }
 }
